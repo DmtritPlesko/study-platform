@@ -1,22 +1,18 @@
-package com.study.platform.auth.dto;
+package com.study.interaction.user.dto;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
+@Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RegisterRequest {
-
-    String email;
-
-    String password;
-
-    UserRole role;
+public class UserDto {
 
     String username;
 
-    String nameGroup;
+    String groupName;
 }

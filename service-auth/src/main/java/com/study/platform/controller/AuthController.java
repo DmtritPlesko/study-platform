@@ -1,12 +1,13 @@
 package com.study.platform.controller;
 
-import com.study.platform.auth.dto.JwtResponse;
-import com.study.platform.auth.dto.LoginRequest;
-import com.study.platform.auth.dto.RegisterRequest;
+import com.study.interaction.auth.dto.JwtResponse;
+import com.study.interaction.auth.dto.LoginRequest;
+import com.study.interaction.auth.dto.RegisterRequest;
 import com.study.platform.service.UserAuthService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +24,16 @@ public class AuthController {
 
     @PostMapping(path = "/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+        service.register(registerRequest);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body("Пользователь создан");
     }
 
     @PostMapping(path = "/login")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
 
+
+        return null;
     }
 
 }

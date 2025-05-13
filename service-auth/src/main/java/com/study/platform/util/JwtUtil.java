@@ -1,4 +1,4 @@
-package com.study.platform.config;
+package com.study.platform.util;
 
 import com.study.platform.entity.LoginInformation;
 import io.jsonwebtoken.Jwts;
@@ -11,12 +11,11 @@ import java.util.Date;
 
 @Component
 @Slf4j
-public class JwtConf {
-
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+public class JwtUtil {
 
     private final int jwtExpirationMs = 86400000;
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     public String generateToken(LoginInformation user) {
         return Jwts.builder()

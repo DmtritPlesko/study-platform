@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.study.platform</groupId>
-        <artifactId>demo</artifactId>
+        <artifactId>study-platform</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -15,7 +15,6 @@
     <modules>
         <module>api-gateway</module>
         <module>config-server</module>
-        <module>interaction-api</module>
     </modules>
 
     <properties>
@@ -23,5 +22,6 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
 </project>

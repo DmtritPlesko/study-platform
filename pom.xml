@@ -6,14 +6,29 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
+
 	<groupId>com.study.platform</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>study-platform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<packaging>pom</packaging>
 	<name>study-platform</name>
+
 	<description>this is my version of study-platform</description>
+
+	<modules>
+		<module>course</module>
+		<module>infra</module>
+		<module>service-analytics</module>
+		<module>service-redis</module>
+		<module>service-auth</module>
+		<module>interaction-api</module>
+		<module>infra/serialization</module>
+	</modules>
+
+
 	<url/>
 	<licenses>
 		<license/>
@@ -21,13 +36,6 @@
 	<developers>
 		<developer/>
 	</developers>
-    <modules>
-		<module>service-auth</module>
-		<module>course</module>
-		<module>infra</module>
-		<module>service-analytics</module>
-		<module>service-redis</module>
-	</modules>
     <scm>
 		<connection/>
 		<developerConnection/>
@@ -51,24 +59,11 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>

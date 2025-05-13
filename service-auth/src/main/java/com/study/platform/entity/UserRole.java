@@ -1,4 +1,4 @@
-package com.study.platform.auth.dto;
+package com.study.platform.entity;
 
 public enum UserRole {
     STUDENT,

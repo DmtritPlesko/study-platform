@@ -1,9 +1,11 @@
 package com.study.platform.entity;
 
-import com.study.platform.auth.dto.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Getter

@@ -1,7 +1,7 @@
 syntax = "proto3";
+package com.study.proto;
 
-option java_multiple_files = true;
-option java_package = "com.studyplatform.auth.grpc";
+option java_package = "com.study.platform.auth.grpc";
 
 service AuthService {
   rpc RegisterUser (UserRequest) returns (UserResponse);
@@ -13,5 +13,5 @@ message UserRequest {
 }
 
 message UserResponse {
-  string user_id = 1;
+  int64 user_id = 1;
 }
