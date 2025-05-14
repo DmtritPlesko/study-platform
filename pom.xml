@@ -25,7 +25,6 @@
 		<module>service-redis</module>
 		<module>service-auth</module>
 		<module>interaction-api</module>
-		<module>infra/serialization</module>
 	</modules>
 
 

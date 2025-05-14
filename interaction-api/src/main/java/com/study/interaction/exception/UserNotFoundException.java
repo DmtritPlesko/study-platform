@@ -1,4 +1,4 @@
-package com.study.platform.exception;
+package com.study.interaction.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {

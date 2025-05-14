@@ -1,0 +1,32 @@
+syntax = "proto3";
+package com.study.proto;
+
+option java_package = "com.study.platform.user.grpc";
+
+service UserService {
+  rpc UpdateLoginInformationUser (UpdateUserInformationRequest) returns (BaseUserInformationResponse);
+  rpc DeleteInformationUser(BaseUserInformationRequest) returns (BaseUserInformationResponse);
+  rpc GetInformationUser(BaseUserInformationRequest) returns (GetUserInformationResponse);
+}
+
+message BaseUserInformationRequest {
+  string user_id = 1;
+}
+
+message BaseUserInformationResponse {
+  string status = 1;
+}
+
+message UpdateUserInformationRequest {
+  string user_id = 1;
+  string email = 2;
+  string password = 3;
+  string role = 4;
+}
+
+message GetUserInformationResponse {
+  string email = 1;
+  string password = 2;
+  string role = 3;
+}
+

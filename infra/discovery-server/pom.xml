@@ -5,19 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.study.platform</groupId>
-        <artifactId>study-platform</artifactId>
+        <artifactId>infra</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <packaging>pom</packaging>
-    <artifactId>infra</artifactId>
-
-    <modules>
-        <module>api-gateway</module>
-        <module>config-server</module>
-        <module>serialization</module>
-        <module>discovery-server</module>
-    </modules>
+    <artifactId>discovery-server</artifactId>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
@@ -25,5 +17,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

@@ -1,6 +1,5 @@
-package com.study.platform.model;
+package com.study.interaction.user.dto;
 
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,19 +8,18 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "users")
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class InformationUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
-
-    @Column(name = "username")
     String username;
 
-    @Column(name = "group_name")
     String groupName;
+
+    String email;
+
+    String password;
+
+    String role;
+
 }

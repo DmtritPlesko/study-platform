@@ -18,7 +18,7 @@ public class LoginInformation {
 
     @Id
     @Column(name = "user_id")
-    Long id;
+    String id;
 
     @Email
     @Column(name = "email")
