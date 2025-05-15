@@ -10,4 +10,6 @@ public interface UserAuthRepository extends JpaRepository<LoginInformation, Stri
     boolean isExistUserByEmail(String email);
 
     Optional<LoginInformation> findByEmail(String email);
+
+    Optional<LoginInformation> findByRefreshTokenHash(String token);
 }

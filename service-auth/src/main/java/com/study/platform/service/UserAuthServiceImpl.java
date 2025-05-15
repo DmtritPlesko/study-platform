@@ -1,8 +1,6 @@
 package com.study.platform.service;
 
-import com.study.interaction.auth.dto.AuthResponse;
-import com.study.interaction.auth.dto.LoginRequest;
-import com.study.interaction.auth.dto.RegisterRequest;
+import com.study.interaction.auth.dto.*;
 import com.study.interaction.exception.ConflictException;
 import com.study.interaction.exception.InvalidPasswordException;
 import com.study.interaction.exception.UserNotFoundException;
@@ -18,6 +16,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Slf4j
 @Service
@@ -56,7 +57,7 @@ public class UserAuthServiceImpl implements UserAuthService {
     }
 
     @Override
-    public AuthResponse login(LoginRequest request) {
+    public TokenPair login(LoginRequest request) {
 
         LoginInformation loginInformation = authRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UserNotFoundException("Пользователь с email - "
@@ -66,10 +67,31 @@ public class UserAuthServiceImpl implements UserAuthService {
             throw new InvalidPasswordException("Неверный пароль для пользователя email - " + request.getEmail());
         }
 
-        String token = jwtUtil.generateToken(loginInformation);
+        RefreshToken refreshToken = jwtUtil.generateRefreshToken();
+        loginInformation.setRefreshTokenHash(refreshToken.getHash());
+        loginInformation.setTokenExpire(Date.valueOf(LocalDate.now().plusDays(7)));
 
-        return new AuthResponse(token);
+        authRepository.save(loginInformation);
 
+        return new TokenPair(jwtUtil.generateAccessToken(loginInformation), refreshToken.getToken());
+
+    }
+
+    @Override
+    public void revokeRefreshToken(String token) {
+
+        authRepository.findByRefreshTokenHash(jwtUtil.generateHashByToken(token))
+                .ifPresent(information -> {
+                    information.setRefreshTokenHash(null);
+                    information.setTokenExpire(null);
+                    authRepository.save(information);
+                });
+
+    }
+
+    @Override
+    public AuthResponse refreshAccessToken(String refreshTokenHash) {
+        return null;
     }
 
 }
