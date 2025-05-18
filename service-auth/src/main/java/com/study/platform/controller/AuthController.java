@@ -1,10 +1,10 @@
 package com.study.platform.controller;
 
-import com.study.interaction.auth.dto.AuthResponse;
-import com.study.interaction.auth.dto.LoginRequest;
-import com.study.interaction.auth.dto.RegisterRequest;
-import com.study.interaction.auth.dto.TokenPair;
-import com.study.platform.service.UserAuthService;
+import com.study.interaction.dto.auth.AuthResponse;
+import com.study.interaction.dto.auth.LoginRequest;
+import com.study.interaction.dto.auth.RegisterRequest;
+import com.study.interaction.dto.auth.TokenPair;
+import com.study.platform.service.LoginInformationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
@@ -24,7 +24,7 @@ import java.time.Duration;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthController {
 
-    final UserAuthService service;
+    final LoginInformationService service;
 
     @PostMapping(path = "/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {

@@ -1,8 +1,8 @@
 package com.study.platform.service;
 
 import com.study.interaction.exception.UserNotFoundException;
-import com.study.interaction.user.dto.InformationUser;
-import com.study.interaction.user.dto.UserDto;
+import com.study.interaction.dto.user.InformationUser;
+import com.study.interaction.dto.user.UserDto;
 import com.study.platform.model.User;
 import com.study.platform.repositroy.UserRepository;
 import com.study.platform.service.grpc.AuthGrpcClient;
@@ -46,11 +46,7 @@ public class UserServiceImpl implements UserService {
                         + userInformation.getUsername() + " не найден"));
 
 
-        String message = authGrpcClient.updateUser(id, userInformation);
-
-        if (!message.equals("ok")) {
-            throw new RuntimeException(message);
-        }
+        authGrpcClient.updateUser(id, userInformation);
 
         if (!user.getUsername().equals(userInformation.getUsername())) {
             user.setUsername(userInformation.getUsername());
@@ -72,11 +68,7 @@ public class UserServiceImpl implements UserService {
         User user = repository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("Пользователь: " + username + " не найден"));
 
-        String message = authGrpcClient.deleteUser(user.getId());
-
-        if (!message.equals("ok")) {
-            throw new RuntimeException(message);
-        }
+        authGrpcClient.deleteUser(user.getId());
 
         repository.deleteById(user.getId());
     }

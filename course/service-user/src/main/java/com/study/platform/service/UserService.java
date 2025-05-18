@@ -1,7 +1,7 @@
 package com.study.platform.service;
 
-import com.study.interaction.user.dto.InformationUser;
-import com.study.interaction.user.dto.UserDto;
+import com.study.interaction.dto.user.InformationUser;
+import com.study.interaction.dto.user.UserDto;
 
 public interface UserService {
 

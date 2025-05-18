@@ -3,10 +3,14 @@ package com.study.proto;
 
 option java_package = "com.study.platform.user.grpc";
 
+import "google/protobuf/wrappers.proto";
+
+
 service UserService {
-  rpc UpdateLoginInformationUser (UpdateUserInformationRequest) returns (BaseUserInformationResponse);
-  rpc DeleteInformationUser(BaseUserInformationRequest) returns (BaseUserInformationResponse);
+  rpc UpdateLoginInformationUser (UpdateUserInformationRequest) returns (google.protobuf.BoolValue);
+  rpc DeleteInformationUser(BaseUserInformationRequest) returns (google.protobuf.BoolValue);
   rpc GetInformationUser(BaseUserInformationRequest) returns (GetUserInformationResponse);
+  rpc ExistUserById(BaseUserInformationRequest) returns (google.protobuf.BoolValue);
 }
 
 message BaseUserInformationRequest {

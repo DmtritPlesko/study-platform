@@ -1,14 +1,13 @@
 package com.study.platform.util;
 
-import com.study.interaction.auth.dto.RefreshToken;
-import com.study.interaction.auth.dto.TokenPair;
+import com.study.interaction.dto.auth.RefreshToken;
+import com.study.interaction.dto.auth.TokenPair;
 import com.study.platform.entity.LoginInformation;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.HmacUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;

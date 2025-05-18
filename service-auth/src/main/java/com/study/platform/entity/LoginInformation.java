@@ -34,7 +34,7 @@ public class LoginInformation {
     boolean active;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role")
     UserRole role;
 
     @Column(name = "refresh_token_hash")

@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.study.platform</groupId>
-        <artifactId>study-platform</artifactId>
+        <artifactId>course</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>service-user</artifactId>
@@ -19,12 +18,6 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.study.platform</groupId>
-            <artifactId>interaction-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>net.devh</groupId>

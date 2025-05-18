@@ -1,8 +1,10 @@
 package com.study.platform.service.grpc;
 
-import com.study.interaction.user.dto.InformationUser;
+import com.study.interaction.dto.user.InformationUser;
+import com.study.interaction.exception.CourseNotFoundException;
 import com.study.platform.user.grpc.UserServiceGrpc;
 import com.study.platform.user.grpc.UserServiceOuterClass;
+import io.grpc.StatusRuntimeException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,30 +17,29 @@ public class AuthGrpcClient {
 
     final UserServiceGrpc.UserServiceBlockingStub userServiceBlockingStub;
 
-    public String deleteUser(String userId) {
+    public void deleteUser(String userId) {
 
-        UserServiceOuterClass.BaseUserInformationRequest request =
-                UserServiceOuterClass.BaseUserInformationRequest.newBuilder()
-                        .setUserId(userId)
-                        .build();
+        try {
+            userServiceBlockingStub
+                    .deleteInformationUser(UserServiceOuterClass.BaseUserInformationRequest.newBuilder()
+                            .setUserId(userId).build());
+        } catch (StatusRuntimeException e) {
+            throw new CourseNotFoundException(e.getMessage());
+        }
 
-        UserServiceOuterClass.BaseUserInformationResponse response =
-                userServiceBlockingStub
-                        .deleteInformationUser(UserServiceOuterClass.BaseUserInformationRequest.newBuilder()
-                        .setUserId(userId).build());
-
-        return response.getStatus();
     }
 
-    public String updateUser(String id, InformationUser informationUser) {
+    public void updateUser(String id, InformationUser informationUser) {
 
         UserServiceOuterClass.UpdateUserInformationRequest updateUserInformationRequest =
                 checkFieldsUpdate(id, informationUser);
 
-        UserServiceOuterClass.BaseUserInformationResponse response =
-                userServiceBlockingStub.updateLoginInformationUser(updateUserInformationRequest);
+        try {
+            userServiceBlockingStub.updateLoginInformationUser(updateUserInformationRequest);
+        } catch (StatusRuntimeException e) {
+            throw new CourseNotFoundException(e.getMessage());
+        }
 
-        return response.getStatus();
     }
 
     private UserServiceOuterClass.UpdateUserInformationRequest checkFieldsUpdate(

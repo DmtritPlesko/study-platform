@@ -1,7 +1,7 @@
 package com.study.platform.controller;
 
-import com.study.interaction.user.dto.InformationUser;
-import com.study.interaction.user.dto.UserDto;
+import com.study.interaction.dto.user.InformationUser;
+import com.study.interaction.dto.user.UserDto;
 import com.study.platform.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
