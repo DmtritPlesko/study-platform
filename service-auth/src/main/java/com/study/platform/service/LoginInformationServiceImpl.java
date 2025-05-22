@@ -36,7 +36,7 @@ public class LoginInformationServiceImpl implements LoginInformationService {
 
     public void register(RegisterRequest registerRequest) {
 
-        if (authRepository.isExistUserByEmail(registerRequest.getEmail())) {
+        if (authRepository.findByEmail(registerRequest.getEmail()).isEmpty()) {
             throw new ConflictException("Пользователь с email - " + registerRequest.getEmail() + " уже существует");
         }
 

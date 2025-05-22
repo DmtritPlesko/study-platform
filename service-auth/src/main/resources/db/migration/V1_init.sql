@@ -13,4 +13,4 @@ insert into login_information
 values
 ('user','123',true,'STUDENT'),
 ('teacher','111',true,'TEACHER'),
-('root','root',true,'ADMIN');
+('root@root.ru','rootroot',true,'ADMIN');

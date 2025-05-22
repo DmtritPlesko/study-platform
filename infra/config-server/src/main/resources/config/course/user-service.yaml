@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:userdb  # Используем in-memory базу
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  h2:
+    console:
+      enabled: true  # Включаем консоль H2
+      path: /user-service/h2-console  # URL для доступа к консоли
+      settings:
+        web-allow-others: true  # Разрешаем доступ извне (для тестирования)
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update  # Автоматическое создание/обновление схемы
+    show-sql: true  # Показывать SQL в логах
+    properties:
+      hibernate:
+        format_sql: true  # Форматировать SQL для удобства чтения

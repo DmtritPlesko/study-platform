@@ -1,2 +1,37 @@
 jwt:
   secret: 7rCGbOs2ll8qTFIUSw1/VPnJ9fC4NchCMaXi7Hn9lXA=
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        useRandomPolicy: true
+        max-interval: 6000
+      discovery:
+        enabled: true
+        serviceId: config-server
+  cloud.gateway:
+    discovery:
+      locator:
+        enabled: true
+        lower-case-service-id: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    preferIpAddress: true
+    hostname: localhost
+    instanceId: "${spring.application.name}:${server.port}"
+    leaseRenewalIntervalInSeconds: 10
