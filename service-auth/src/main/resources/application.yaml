@@ -11,13 +11,10 @@ spring:
     import: "configserver:"
   cloud:
     config:
-      fail-fast: true
-      retry:
-        useRandomPolicy: true
-        max-interval: 6000
+      uri: http://config-server:8888
+      fail-fast: false
       discovery:
-        enabled: true
-        serviceId: config-server
+        enabled: false
   cloud.gateway:
     discovery:
       locator:
