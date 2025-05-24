@@ -1,9 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:userdb  # Используем in-memory базу
+    url: jdbc:h2:file:/data/user-db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL  # Используем in-memory базу
     driver-class-name: org.h2.Driver
     username: sa
-    password: password
+    password: 1
+
+  flyway:
+    baseline-on-migrate: true
+    validate-on-migrate: true
 
   h2:
     console:
@@ -15,7 +19,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update  # Автоматическое создание/обновление схемы
+      ddl-auto: none  # Автоматическое создание/обновление схемы
     show-sql: true  # Показывать SQL в логах
     properties:
       hibernate:

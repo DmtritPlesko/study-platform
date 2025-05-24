@@ -18,6 +18,14 @@ spring:
         enabled: true
         lower-case-service-id: true
 
+  grpc:
+    server:
+      port: 9090
+    client:
+      auth-service:
+        address: static://auth-service:6565
+        enable-keep-alive: true
+
 eureka:
   client:
     serviceUrl:
@@ -29,3 +37,5 @@ eureka:
     hostname: localhost
     instanceId: "${spring.application.name}:${server.port}"
     leaseRenewalIntervalInSeconds: 10
+    metadata-map:
+      grpcPort: 9090

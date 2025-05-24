@@ -22,6 +22,7 @@ public class User {
     @Column(name = "username")
     String username;
 
-    @Column(name = "group_name")
+    @Column(name = "name_group")
     String groupName;
 }
+

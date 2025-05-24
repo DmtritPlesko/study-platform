@@ -8,6 +8,7 @@ import io.grpc.StatusRuntimeException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthGrpcClient {
 
+    @GrpcClient("user-service")
     final UserServiceGrpc.UserServiceBlockingStub userServiceBlockingStub;
 
     public void deleteUser(String userId) {

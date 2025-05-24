@@ -36,7 +36,7 @@ public class LoginInformationServiceImpl implements LoginInformationService {
 
     public void register(RegisterRequest registerRequest) {
 
-        if (authRepository.findByEmail(registerRequest.getEmail()).isEmpty()) {
+        if (authRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
             throw new ConflictException("Пользователь с email - " + registerRequest.getEmail() + " уже существует");
         }
 
@@ -49,7 +49,7 @@ public class LoginInformationServiceImpl implements LoginInformationService {
                 .id(authServiceBlockingStub.registerUser(userRequest).getUserId())
                 .active(true)
                 .email(registerRequest.getEmail())
-                .role(UserRole.valueOf(registerRequest.getRole()))
+                .role(registerRequest.getRole())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .build();
 
@@ -63,7 +63,7 @@ public class LoginInformationServiceImpl implements LoginInformationService {
                 .orElseThrow(() -> new UserNotFoundException("Пользователь с email - "
                         + request.getEmail() + " не зарегистрирован"));
 
-        if (!passwordEncoder.matches(loginInformation.getPassword(), request.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(),loginInformation.getPassword())) {
             throw new InvalidPasswordException("Неверный пароль для пользователя email - " + request.getEmail());
         }
 

@@ -37,6 +37,7 @@ services:
     container_name: auth-service
     ports:
       - "8081:8081"
+      - "6565:6565"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
       - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
@@ -58,7 +59,8 @@ services:
       context: ./course/service-user
     container_name: user-service
     ports:
-      - "8082:8082"  # Лучше использовать стандартный порт 8080 внутри контейнера
+      - "8082:8082"
+      - "9090:9090"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
       - SPRING_CLOUD_CONFIG_URI=http://config-server:8888

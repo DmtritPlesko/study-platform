@@ -36,7 +36,7 @@ public class AuthGrpcServer extends UserServiceGrpc.UserServiceImplBase {
                         user.setPassword(request.getPassword());
                     }
                     if(request.getRole() != null) {
-                        user.setRole(UserRole.valueOf(request.getRole()));
+                        user.setRole(request.getRole());
                     }
 
                     repository.save(user);
@@ -66,7 +66,7 @@ public class AuthGrpcServer extends UserServiceGrpc.UserServiceImplBase {
                     GetUserInformationResponse response = GetUserInformationResponse.newBuilder()
                             .setEmail(user.getEmail())
                             .setPassword(user.getPassword())
-                            .setRole(user.getRole().name())
+                            .setRole(user.getRole())
                             .build();
 
                     responseObserver.onNext(response);

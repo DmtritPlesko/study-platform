@@ -2,10 +2,7 @@ package com.study.platform.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -16,6 +13,8 @@ import java.util.Date;
 @Entity
 @Table(name = "login_information")
 @Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LoginInformation {
 
@@ -33,9 +32,8 @@ public class LoginInformation {
     @Column(name = "is_active")
     boolean active;
 
-    @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "role")
-    UserRole role;
+    @Column(name = "role")
+    String role;
 
     @Column(name = "refresh_token_hash")
     String refreshTokenHash;

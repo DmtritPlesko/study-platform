@@ -17,10 +17,8 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Версии -->
-        <grpc.version>1.54.0</grpc.version>
-        <protobuf.version>3.21.7</protobuf.version>
-        <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
-        <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+        <grpc.version>1.58.0</grpc.version>
+        <protobuf.version>3.21.12</protobuf.version>
     </properties>
 
     <dependencies>
@@ -77,32 +75,24 @@
         <!--GRPC-->
         <dependency>
             <groupId>net.devh</groupId>
-            <artifactId>grpc-server-spring-boot-starter</artifactId>
-            <version>2.14.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.devh</groupId>
             <artifactId>grpc-spring-boot-starter</artifactId>
-            <version>2.15.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-client-spring-boot-starter</artifactId>
             <version>2.14.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>1.53.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>1.53.0</version>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId> <!-- Используем shaded версию! -->
+            <version>${grpc.version}</version>
         </dependency>
 
         <dependency>

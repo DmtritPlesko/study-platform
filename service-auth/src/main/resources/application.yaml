@@ -1,8 +1,18 @@
 jwt:
-  secret: 7rCGbOs2ll8qTFIUSw1/VPnJ9fC4NchCMaXi7Hn9lXA=
+  secret: 2k+LrX0sAr5YLK/2NNBY82JI9EwJq/Rfx3sYnVFPbFBqbdRSRFPSjqCDwqToN2C8jyPuPZD3sFBuJ3EnDkiSvw==
+
 
 server:
   port: 8081
+
+grpc:
+  server:
+    port: 6565
+    enabled: true
+  client:
+    user-service:
+      address: static://user-service:9090
+      enable-keep-alive: true
 
 spring:
   application:
@@ -32,3 +42,10 @@ eureka:
     hostname: localhost
     instanceId: "${spring.application.name}:${server.port}"
     leaseRenewalIntervalInSeconds: 10
+    metadata-map:
+      grpcPort: 6565
+
+
+logging:
+  level:
+    io.grpc: DEBUG

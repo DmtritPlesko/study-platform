@@ -24,6 +24,8 @@ public class UserGrpcService extends AuthServiceGrpc.AuthServiceImplBase {
                 .username(request.getUserName())
                 .build();
 
+        System.out.println(user);
+
         AuthServiceOuterClass.UserResponse response = AuthServiceOuterClass.UserResponse.newBuilder()
                 .setUserId(repository.save(user).getId())
                 .build();
