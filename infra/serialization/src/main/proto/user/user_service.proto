@@ -11,6 +11,7 @@ service UserService {
   rpc DeleteInformationUser(BaseUserInformationRequest) returns (google.protobuf.BoolValue);
   rpc GetInformationUser(BaseUserInformationRequest) returns (GetUserInformationResponse);
   rpc ExistUserById(BaseUserInformationRequest) returns (google.protobuf.BoolValue);
+  rpc GetUserIdByToken(BaseUserInformationRequest) returns (BaseUserInformationResponse);
 }
 
 message BaseUserInformationRequest {
@@ -18,7 +19,7 @@ message BaseUserInformationRequest {
 }
 
 message BaseUserInformationResponse {
-  string status = 1;
+  string user_id = 1;
 }
 
 message UpdateUserInformationRequest {

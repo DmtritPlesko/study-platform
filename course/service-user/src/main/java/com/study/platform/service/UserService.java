@@ -5,11 +5,12 @@ import com.study.interaction.dto.user.UserDto;
 
 public interface UserService {
 
-    UserDto getAllInformationUser(String username);
+    InformationUser getAllInformationUser(String username);
 
     UserDto getUser(String userId);
 
     UserDto updateUser(String id,InformationUser userInformation);
 
     void deleteUser(String username);
+
 }

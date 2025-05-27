@@ -1,5 +1,6 @@
 package com.study.platform.service.grpc;
 
+import com.study.interaction.dto.auth.LoginRequest;
 import com.study.interaction.dto.user.InformationUser;
 import com.study.interaction.exception.CourseNotFoundException;
 import com.study.platform.user.grpc.UserServiceGrpc;
@@ -42,6 +43,36 @@ public class AuthGrpcClient {
             throw new CourseNotFoundException(e.getMessage());
         }
 
+    }
+
+    public String getUserIdByUserToken(String token) {
+
+        UserServiceOuterClass.BaseUserInformationRequest request =
+                UserServiceOuterClass.BaseUserInformationRequest.newBuilder()
+                        .setUserId(token)
+                        .build();
+
+        UserServiceOuterClass.BaseUserInformationResponse response =
+                userServiceBlockingStub.getUserIdByToken(request);
+
+        return response.getUserId();
+    }
+
+    public LoginRequest getUserLoginInfo (String id) {
+
+        UserServiceOuterClass.BaseUserInformationRequest request =
+                UserServiceOuterClass.BaseUserInformationRequest.newBuilder()
+                        .setUserId(id)
+                        .build();
+
+        UserServiceOuterClass.GetUserInformationResponse response =
+                userServiceBlockingStub.getInformationUser(request);
+
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail(response.getEmail());
+        loginRequest.setPassword(response.getPassword());
+
+        return loginRequest;
     }
 
     private UserServiceOuterClass.UpdateUserInformationRequest checkFieldsUpdate(

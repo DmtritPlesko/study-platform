@@ -1,20 +1,24 @@
 server:
-  port: 8080
+  port: 8083
+
 
 spring:
   application:
-    name: gateway-server
+    name: course-service
   config:
     import: "configserver:"
   cloud:
     config:
-      fail-fast: true
-      retry:
-        useRandomPolicy: true
-        max-interval: 6000
+      uri: http://config-server:8888
+      fail-fast: false
       discovery:
+        enabled: false
+  cloud.gateway:
+    discovery:
+      locator:
         enabled: true
-        serviceId: config-server
+        lower-case-service-id: true
+
 eureka:
   client:
     serviceUrl:

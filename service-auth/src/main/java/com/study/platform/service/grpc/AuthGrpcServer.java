@@ -5,6 +5,7 @@ import com.study.platform.entity.LoginInformation;
 import com.study.platform.entity.UserRole;
 import com.study.platform.repository.LoginInformationRepository;
 import com.study.platform.user.grpc.UserServiceGrpc;
+import com.study.platform.util.JwtUtil;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.AccessLevel;
@@ -22,6 +23,8 @@ import static com.study.platform.user.grpc.UserServiceOuterClass.*;
 public class AuthGrpcServer extends UserServiceGrpc.UserServiceImplBase {
 
     final LoginInformationRepository repository;
+
+    final JwtUtil jwtUtil;
 
     @Override
     public void updateLoginInformationUser(UpdateUserInformationRequest request,
@@ -77,6 +80,18 @@ public class AuthGrpcServer extends UserServiceGrpc.UserServiceImplBase {
     @Override
     public void existUserById(BaseUserInformationRequest request,
                               StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+    }
+
+    @Override
+    public void getUserIdByToken(BaseUserInformationRequest request,
+                                 StreamObserver<BaseUserInformationResponse> responseObserver) {
+
+        BaseUserInformationResponse response = BaseUserInformationResponse.newBuilder()
+                .setUserId(jwtUtil.getUserIdFromToken(request.getUserId()))
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 
 

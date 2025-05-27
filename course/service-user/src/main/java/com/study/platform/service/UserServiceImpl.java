@@ -1,5 +1,6 @@
 package com.study.platform.service;
 
+import com.study.interaction.dto.auth.LoginRequest;
 import com.study.interaction.exception.UserNotFoundException;
 import com.study.interaction.dto.user.InformationUser;
 import com.study.interaction.dto.user.UserDto;
@@ -22,8 +23,21 @@ public class UserServiceImpl implements UserService {
     final AuthGrpcClient authGrpcClient;
 
     @Override
-    public UserDto getAllInformationUser(String username) {
-        return null;
+    public InformationUser getAllInformationUser(String token) {
+
+        String userId = authGrpcClient.getUserIdByUserToken(token);
+
+        User user = repository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("Пользователь не найден"));
+
+        LoginRequest loginRequest = authGrpcClient.getUserLoginInfo(user.getId());
+
+        return InformationUser.builder()
+                .email(loginRequest.getEmail())
+                .groupName(user.getGroupName())
+                .password(loginRequest.getPassword())
+                .username(user.getUsername())
+                .build();
     }
 
     @Override
