@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -59,5 +61,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void registerInCourse(String courseId, String userId) {
 
+    }
+
+    @Override
+    public List<CourseDto> getAllCourses() {
+
+        return courseRepository.findAll().stream()
+                .map(mapper::toCourseDto)
+                .toList();
     }
 }

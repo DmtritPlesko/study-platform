@@ -1,7 +1,6 @@
 jwt:
   secret: 2k+LrX0sAr5YLK/2NNBY82JI9EwJq/Rfx3sYnVFPbFBqbdRSRFPSjqCDwqToN2C8jyPuPZD3sFBuJ3EnDkiSvw==
 
-
 server:
   port: 8081
 

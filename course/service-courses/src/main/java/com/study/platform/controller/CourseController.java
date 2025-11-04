@@ -25,21 +25,28 @@ public class CourseController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<CourseDto> updateCourse(@PathVariable("id") String courseId,
-            @RequestBody CourseDto courseDto) {
-        return ResponseEntity.ok(courseService.updateCourse(courseId,courseDto));
+                                                  @RequestBody CourseDto courseDto) {
+        return ResponseEntity.ok(courseService.updateCourse(courseId, courseDto));
     }
 
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCourse (@PathVariable("id") String courseId) {
+    public void deleteCourse(@PathVariable("id") String courseId) {
         courseService.deleteCourse(courseId);
     }
 
     @PostMapping(path = "/{id}/register/{userId}")
-    public ResponseEntity<Void> registerInCourse (@PathVariable("id") String courseId,
-                                                  @PathVariable("userId") String useId) {
-        courseService.registerInCourse(courseId,useId);
+    public ResponseEntity<Void> registerInCourse(@PathVariable("id") String courseId,
+                                                 @PathVariable("userId") String useId) {
+        courseService.registerInCourse(courseId, useId);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/all")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> getAllCourses() {
+
+        return ResponseEntity.ok(courseService.getAllCourses());
     }
 }

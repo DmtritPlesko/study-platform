@@ -1,6 +1,7 @@
 package com.study.platform.service;
 
 import com.study.interaction.dto.course.CourseDto;
+import java.util.List;
 
 public interface CourseService {
 
@@ -11,4 +12,6 @@ public interface CourseService {
     void deleteCourse(String courseId);
 
     void registerInCourse(String courseId,String userId);
+
+    List<CourseDto> getAllCourses();
 }

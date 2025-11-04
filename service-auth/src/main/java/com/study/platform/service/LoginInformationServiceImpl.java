@@ -45,11 +45,17 @@ public class LoginInformationServiceImpl implements LoginInformationService {
                 .setUserName(registerRequest.getUsername())
                 .build();
 
+        String role = switch (registerRequest.getRole()) {
+            case "Учитель", "Преподаватель" -> UserRole.TEACHER.toString();
+            case "Админ","Администратор","Директор" -> UserRole.ADMIN.toString();
+            default -> UserRole.STUDENT.toString();
+        };
+
         LoginInformation user = LoginInformation.builder()
                 .id(authServiceBlockingStub.registerUser(userRequest).getUserId())
                 .active(true)
                 .email(registerRequest.getEmail())
-                .role(registerRequest.getRole())
+                .role(role)
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .build();
 

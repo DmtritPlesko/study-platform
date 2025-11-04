@@ -32,6 +32,8 @@ services:
       retries: 10
 
   auth-service:
+    volumes:
+      - ./auth-data:/data
     build:
       context: ./service-auth
     container_name: auth-service

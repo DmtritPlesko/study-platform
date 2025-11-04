@@ -1,22 +1,32 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:auth-db  # Используем in-memory базу
+    url: jdbc:h2:file:/study-platform/service-auth/db
     driver-class-name: org.h2.Driver
     username: sa
     password: 1
 
   h2:
     console:
-      enabled: true  # Включаем консоль H2
-      path: /auth-service/h2-console  # URL для доступа к консоли
+      enabled: true
+      path: /h2-console  # Более стандартный путь
       settings:
-        web-allow-others: true  # Разрешаем доступ извне (для тестирования)
+        web-allow-others: true  # Безопаснее для продакшена
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update  # Автоматическое создание/обновление схемы
-    show-sql: true  # Показывать SQL в логах
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true  # Форматировать SQL для удобства чтения
+        format_sql: true
+        # Дополнительные настройки для лучшей производительности
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+  # Дополнительные настройки для продакшена
+  sql:
+    init:
+      platform: h2

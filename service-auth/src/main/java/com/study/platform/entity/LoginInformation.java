@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.checkerframework.common.value.qual.StringVal;
 
 import java.time.LocalDateTime;
 import java.util.Date;
