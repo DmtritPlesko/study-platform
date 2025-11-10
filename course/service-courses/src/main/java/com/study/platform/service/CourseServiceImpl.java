@@ -31,6 +31,20 @@ public class CourseServiceImpl implements CourseService {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new CourseNotFoundException("Курс не найден для обновления"));
 
+        course.setDescription(courseDto.getDescription());
+        course.setName(courseDto.getName());
+        course.setTitle(courseDto.getTitle());
+        course.setUniversity(courseDto.getUniversity());
+
+        return mapper.toCourseDto(course);
+    }
+
+    @Override
+    public CourseDto patchUpdateCourse(CourseDto courseDto) {
+
+        Course course = courseRepository.findById(courseDto.getId())
+                .orElseThrow(() -> new CourseNotFoundException("Курс не найден для обновления"));
+
         if (courseDto.getDescription() != null) {
             course.setDescription(courseDto.getDescription());
         }
@@ -44,7 +58,7 @@ public class CourseServiceImpl implements CourseService {
             course.setUniversity(courseDto.getUniversity());
         }
 
-        return mapper.toCourseDto(courseRepository.save(course));
+        return mapper.toCourseDto(course);
     }
 
     @Override

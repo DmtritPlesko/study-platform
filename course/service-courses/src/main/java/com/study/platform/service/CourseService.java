@@ -9,6 +9,8 @@ public interface CourseService {
 
     CourseDto updateCourse(String courseId,CourseDto courseDto);
 
+    CourseDto patchUpdateCourse(CourseDto courseDto);
+
     void deleteCourse(String courseId);
 
     void registerInCourse(String courseId,String userId);
