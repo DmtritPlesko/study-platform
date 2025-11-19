@@ -4,9 +4,13 @@ import com.study.interaction.dto.auth.AuthResponse;
 import com.study.interaction.dto.auth.LoginRequest;
 import com.study.interaction.dto.auth.RegisterRequest;
 import com.study.interaction.dto.auth.TokenPair;
+import com.study.platform.controller.documentation.CreateUserDock;
+import com.study.platform.controller.documentation.LoginUserDock;
 import com.study.platform.service.LoginInformationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,18 +26,29 @@ import java.time.Duration;
 @RequestMapping(path = "api/v1/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Tag(name = "Auth", description = "Управление регистрацией пользователей")
 public class AuthController {
 
     final LoginInformationService service;
 
+    @CreateUserDock
     @PostMapping(path = "/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> register(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Данные для создания пользователя",
+                    required = true
+            )
+            @RequestBody @Valid RegisterRequest registerRequest) {
         service.register(registerRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Пользователь создан");
     }
 
+
+    @LoginUserDock
     @PostMapping(path = "/login")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest,
                                               HttpServletResponse response) {
 

@@ -1,7 +1,6 @@
 server:
   port: 8083
 
-
 spring:
   application:
     name: course-service
@@ -30,3 +29,13 @@ eureka:
     hostname: localhost
     instanceId: "${spring.application.name}:${server.port}"
     leaseRenewalIntervalInSeconds: 10
+
+#    Documentation
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+  show-actuator: false

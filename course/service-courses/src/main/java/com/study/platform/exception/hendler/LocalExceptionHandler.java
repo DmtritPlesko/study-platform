@@ -1,7 +1,7 @@
 package com.study.platform.exception.hendler;
 
-import org.hibernate.annotations.Comment;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class LocalExceptionHandler {
 
     // обработка @Valid
-    @ExceptionHandler()
+    @ExceptionHandler(ErrorResponseException.class)
     public ResponseEntity<ErrorResponse> handleValidationException (
             MethodArgumentNotValidException ex) {
 
